@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>ひみつのワードゲーム♡</title>
 
   <style>
@@ -13,60 +14,120 @@
     body {
       margin: 0;
       min-height: 100vh;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
-                   "Yu Gothic", sans-serif;
-      background: linear-gradient(135deg, #ffe4f0, #e9ddff);
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        sans-serif;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffe4f0,
+          #f3e5ff,
+          #e0f3ff
+        );
+
       display: flex;
       justify-content: center;
       align-items: center;
+
       padding: 20px;
     }
 
     .container {
       width: 100%;
       max-width: 500px;
-      background: rgba(255, 255, 255, 0.9);
+
+      background: rgba(255, 255, 255, 0.92);
+
       border-radius: 30px;
+
       padding: 35px 25px;
+
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+      box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.12);
+
+      border: 3px solid rgba(255, 255, 255, 0.8);
     }
 
-    h1 {
-      margin-top: 0;
-      color: #ff6fa5;
+    .title {
+      margin: 0 0 10px;
+
       font-size: 28px;
+
+      color: #ff6fa5;
+
+      font-weight: bold;
     }
 
-    .description {
-      color: #777;
+    .subtitle {
       margin-bottom: 25px;
+
+      color: #777;
+
+      font-size: 15px;
+    }
+
+    .input-area {
+      width: 100%;
     }
 
     input {
       width: 100%;
-      padding: 15px;
+
+      padding: 16px;
+
       border: 2px solid #ffc1d9;
-      border-radius: 15px;
+
+      border-radius: 18px;
+
       font-size: 16px;
+
       outline: none;
+
+      background: #fff;
     }
 
     input:focus {
       border-color: #ff6fa5;
+
+      box-shadow:
+        0 0 0 3px rgba(255, 111, 165, 0.15);
     }
 
     button {
-      margin-top: 15px;
       width: 100%;
-      padding: 15px;
+
+      margin-top: 15px;
+
+      padding: 16px;
+
       border: none;
-      border-radius: 15px;
-      background: #ff8fba;
+
+      border-radius: 18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ff8fba,
+          #c99cff
+        );
+
       color: white;
+
       font-size: 17px;
+
       font-weight: bold;
+
       cursor: pointer;
+
+      box-shadow:
+        0 5px 12px rgba(200, 130, 200, 0.25);
     }
 
     button:active {
@@ -74,104 +135,183 @@
     }
 
     #result {
-      margin-top: 25px;
+      margin-top: 28px;
+    }
+
+    .result-text {
+      font-size: 22px;
+
+      font-weight: bold;
+
+      color: #555;
+
+      margin-bottom: 15px;
+
+      white-space: pre-wrap;
     }
 
     #result img {
       width: 100%;
+
       max-width: 350px;
+
+      height: auto;
+
       border-radius: 20px;
-      margin-top: 15px;
+
+      display: block;
+
+      margin: 0 auto;
+
+      box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.12);
     }
 
-    .result-text {
-      font-size: 20px;
-      font-weight: bold;
-      color: #555;
+    .heart {
+      font-size: 18px;
     }
   </style>
 </head>
+
 
 <body>
 
   <div class="container">
 
-    <h1>🎀 ひみつのワードゲーム 🎀</h1>
+    <h1 class="title">
+      🎀 ひみつのワードゲーム 🎀
+    </h1>
 
-    <p class="description">
-      ワードを入力してみてね♡
+    <p class="subtitle">
+      <span class="heart">♡</span>
+      ワードを入力してみてね
+      <span class="heart">♡</span>
     </p>
 
-    <input
-      type="text"
-      id="wordInput"
-      placeholder="ここに入力してね"
-    >
 
-    <button onclick="checkWord()">
-      調べる♡
-    </button>
+    <div class="input-area">
+
+      <input
+        type="text"
+        id="wordInput"
+        placeholder="ここに入力してね♡"
+      >
+
+      <button onclick="checkWord()">
+        調べる ♡
+      </button>
+
+    </div>
+
 
     <div id="result"></div>
 
   </div>
 
+
   <script>
+
     function checkWord() {
 
-      const input = document.getElementById("wordInput").value;
-      const result = document.getElementById("result");
+      // 入力された文字を取得
+      const input =
+        document.getElementById("wordInput").value;
 
-      let firstWord = "";
-      let firstPosition = Infinity;
+      // 結果を表示する場所
+      const result =
+        document.getElementById("result");
 
+
+      // 判定するワードと画像
       const words = [
+
         {
           word: "ちんこ",
-          image: "image-a.jpg",
-          message: "🎉 正解！"
+          image: "IMG_5889.jpeg",
+          message: "ちんこ！！！"
         },
+
         {
           word: "ちんちん",
-          image: "image-b.jpg",
-          message: "🎉 正解！"
+          image: "IMG_5890.jpeg",
+          message: "ちんちん！！！"
         },
+
         {
           word: "ちんぽ",
-          image: "image-c.jpg",
-          message: "🎉 正解！"
+          image: "IMG_5891.jpeg",
+          message: "ちんぽ！！！"
         }
+
       ];
 
+
+      // 最初に見つかったワードを記録
+      let firstMatch = null;
+
+      let firstPosition = Infinity;
+
+
+      // 3つのワードを調べる
       for (const item of words) {
 
-        const position = input.indexOf(item.word);
+        const position =
+          input.indexOf(item.word);
 
-        if (position !== -1 && position < firstPosition) {
+
+        // ワードが見つかった場合
+        if (
+          position !== -1 &&
+          position < firstPosition
+        ) {
+
           firstPosition = position;
-          firstWord = item;
+
+          firstMatch = item;
+
         }
+
       }
 
-      if (firstWord !== "") {
+
+      // 正解ワードが見つかった場合
+      if (firstMatch !== null) {
 
         result.innerHTML = `
+
           <div class="result-text">
-            ${firstWord.message}
+            ${firstMatch.message}
           </div>
-          <img src="${firstWord.image}" alt="結果画像">
+
+          <img
+            src="${firstMatch.image}"
+            alt="結果画像"
+          >
+
         `;
 
-      } else {
-
-        result.innerHTML = `
-          <div class="result-text">
-            😭 ハズレ！
-          </div>
-          <img src="image-miss.jpg" alt="ハズレ画像">
-        `;
       }
+
+      // 正解ワードが見つからなかった場合
+      else {
+
+        result.innerHTML = `
+
+          <div class="result-text">
+            他のワードを入力してください。
+          </div>
+
+          <img
+            src="IMG_5892.jpeg"
+            alt="ハズレ画像"
+          >
+
+        `;
+
+      }
+
     }
+
   </script>
 
 </body>
