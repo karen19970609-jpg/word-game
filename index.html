@@ -160,7 +160,7 @@
     }
 
 
-    /* ボタン */
+    /* 調べるボタン */
 
     button {
 
@@ -224,7 +224,7 @@
     }
 
 
-    /* 検索結果のメッセージ */
+    /* 検索結果メッセージ */
 
     .result-text {
 
@@ -245,7 +245,7 @@
     }
 
 
-    /* 検索結果の画像 */
+    /* 検索結果画像 */
 
     #result img {
 
@@ -264,6 +264,44 @@
       box-shadow:
         0 6px 18px
         rgba(0, 0, 0, 0.12);
+
+    }
+
+
+    /* もう一度遊ぶボタン */
+
+    .retry-button {
+
+      width: 100%;
+
+      margin-top: 20px;
+
+      padding: 14px;
+
+      border: 2px solid #ff9fc3;
+
+      border-radius: 18px;
+
+      background: white;
+
+      color: #ff6fa5;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      box-shadow: none;
+
+    }
+
+
+    .retry-button:active {
+
+      transform: scale(0.98);
+
+      background: #fff5f9;
 
     }
 
@@ -301,7 +339,7 @@
     </p>
 
 
-    <!-- 入力 -->
+    <!-- 入力エリア -->
 
     <div class="input-area">
 
@@ -325,7 +363,7 @@
     </div>
 
 
-    <!-- 結果 -->
+    <!-- 結果表示 -->
 
     <div id="result"></div>
 
@@ -420,14 +458,11 @@
           position < firstPosition
         ) {
 
-
           firstPosition =
             position;
 
-
           firstMatch =
             item;
-
 
         }
 
@@ -455,6 +490,16 @@
             alt="結果画像"
           >
 
+
+          <button
+            class="retry-button"
+            onclick="resetGame()"
+          >
+
+            🔄 もう一度遊ぶ
+
+          </button>
+
         `;
 
 
@@ -470,7 +515,7 @@
 
           <div class="result-text">
 
-            他のワードを入力してください。
+            残念…
 
           </div>
 
@@ -480,10 +525,62 @@
             alt="ハズレ画像"
           >
 
+
+          <button
+            class="retry-button"
+            onclick="resetGame()"
+          >
+
+            🔄 もう一度遊ぶ
+
+          </button>
+
         `;
 
-
       }
+
+    }
+
+
+    // トップ画面に戻る
+
+    function resetGame() {
+
+
+      // 入力欄を空にする
+
+      document
+        .getElementById("wordInput")
+        .value = "";
+
+
+      // 結果を消す
+
+      document
+        .getElementById("result")
+        .innerHTML = "";
+
+
+      // ページの一番上へ移動
+
+      window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+      });
+
+
+      // 入力欄にカーソルを戻す
+
+      setTimeout(function() {
+
+        document
+          .getElementById("wordInput")
+          .focus();
+
+      }, 400);
 
     }
 
