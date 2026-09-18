@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ひみつのワードゲーム♡</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>ワードゲーム♡</title>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       min-height: 100vh;
 
       font-family:
@@ -31,17 +42,24 @@
         );
 
       display: flex;
+
       justify-content: center;
+
       align-items: center;
 
       padding: 20px;
+
     }
 
+
     .container {
+
       width: 100%;
+
       max-width: 500px;
 
-      background: rgba(255, 255, 255, 0.92);
+      background:
+        rgba(255, 255, 255, 0.92);
 
       border-radius: 30px;
 
@@ -50,12 +68,20 @@
       text-align: center;
 
       box-shadow:
-        0 10px 30px rgba(0, 0, 0, 0.12);
+        0 10px 30px
+        rgba(0, 0, 0, 0.12);
 
-      border: 3px solid rgba(255, 255, 255, 0.8);
+      border:
+        3px solid
+        rgba(255, 255, 255, 0.8);
+
     }
 
+
+    /* タイトル */
+
     .title {
+
       margin: 0 0 10px;
 
       font-size: 28px;
@@ -63,26 +89,52 @@
       color: #ff6fa5;
 
       font-weight: bold;
+
+      text-align: center;
+
     }
 
+
+    /* 説明文 */
+
     .subtitle {
+
       margin-bottom: 25px;
 
       color: #777;
 
       font-size: 15px;
+
+      text-align: center;
+
     }
+
+
+    .heart {
+
+      font-size: 18px;
+
+    }
+
+
+    /* 入力欄 */
 
     .input-area {
+
       width: 100%;
+
     }
 
+
     input {
+
       width: 100%;
 
       padding: 16px;
 
-      border: 2px solid #ffc1d9;
+      border:
+        2px solid
+        #ffc1d9;
 
       border-radius: 18px;
 
@@ -91,16 +143,27 @@
       outline: none;
 
       background: #fff;
+
+      text-align: left;
+
     }
 
+
     input:focus {
+
       border-color: #ff6fa5;
 
       box-shadow:
-        0 0 0 3px rgba(255, 111, 165, 0.15);
+        0 0 0 3px
+        rgba(255, 111, 165, 0.15);
+
     }
 
+
+    /* ボタン */
+
     button {
+
       width: 100%;
 
       margin-top: 15px;
@@ -127,69 +190,121 @@
       cursor: pointer;
 
       box-shadow:
-        0 5px 12px rgba(200, 130, 200, 0.25);
+        0 5px 12px
+        rgba(200, 130, 200, 0.25);
+
     }
+
 
     button:active {
+
       transform: scale(0.98);
+
     }
+
+
+    /* 検索結果 */
 
     #result {
+
+      width: 100%;
+
       margin-top: 28px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
     }
 
+
+    /* 検索結果のメッセージ */
+
     .result-text {
+
+      width: 100%;
+
+      margin: 0 0 15px;
+
       font-size: 22px;
 
       font-weight: bold;
 
       color: #555;
 
-      margin-bottom: 15px;
+      text-align: center;
 
-      white-space: pre-wrap;
+      line-height: 1.6;
+
     }
 
+
+    /* 検索結果の画像 */
+
     #result img {
+
+      display: block;
+
       width: 100%;
 
       max-width: 350px;
 
       height: auto;
 
-      border-radius: 20px;
-
-      display: block;
-
       margin: 0 auto;
 
+      border-radius: 20px;
+
       box-shadow:
-        0 6px 18px rgba(0, 0, 0, 0.12);
+        0 6px 18px
+        rgba(0, 0, 0, 0.12);
+
     }
 
-    .heart {
-      font-size: 18px;
-    }
+
   </style>
+
 </head>
 
 
 <body>
 
+
   <div class="container">
 
+
+    <!-- タイトル -->
+
     <h1 class="title">
-      🎀 ひみつのワードゲーム 🎀
+
+      🎀 ワードゲーム 🎀
+
     </h1>
 
+
+    <!-- 説明 -->
+
     <p class="subtitle">
+
       <span class="heart">♡</span>
+
       ワードを入力してみてね
+
       <span class="heart">♡</span>
+
     </p>
 
 
+    <!-- 入力 -->
+
     <div class="input-area">
+
 
       <input
         type="text"
@@ -197,91 +312,143 @@
         placeholder="ここに入力してね♡"
       >
 
-      <button onclick="checkWord()">
+
+      <button
+        onclick="checkWord()"
+      >
+
         調べる ♡
+
       </button>
+
 
     </div>
 
 
+    <!-- 結果 -->
+
     <div id="result"></div>
+
 
   </div>
 
 
   <script>
 
+
     function checkWord() {
 
+
       // 入力された文字を取得
+
       const input =
-        document.getElementById("wordInput").value;
+        document
+          .getElementById("wordInput")
+          .value;
+
 
       // 結果を表示する場所
+
       const result =
-        document.getElementById("result");
+        document
+          .getElementById("result");
 
 
-      // 判定するワードと画像
+      // 判定するワード
+
       const words = [
 
+
         {
+
           word: "ちんこ",
+
           image: "IMG_5889.jpeg",
+
           message: "ちんこ！！！"
+
         },
 
+
         {
+
           word: "ちんちん",
+
           image: "IMG_5890.jpeg",
+
           message: "ちんちん！！！"
+
         },
 
+
         {
+
           word: "ちんぽ",
+
           image: "IMG_5891.jpeg",
+
           message: "ちんぽ！！！"
+
         }
+
 
       ];
 
 
-      // 最初に見つかったワードを記録
+      // 最初に登場したワードを記録
+
       let firstMatch = null;
 
       let firstPosition = Infinity;
 
 
-      // 3つのワードを調べる
-      for (const item of words) {
+      // 3つのワードを確認
+
+      for (
+        const item of words
+      ) {
+
 
         const position =
           input.indexOf(item.word);
 
 
-        // ワードが見つかった場合
+        // ワードが含まれていた場合
+
         if (
           position !== -1 &&
           position < firstPosition
         ) {
 
-          firstPosition = position;
 
-          firstMatch = item;
+          firstPosition =
+            position;
+
+
+          firstMatch =
+            item;
+
 
         }
 
       }
 
 
-      // 正解ワードが見つかった場合
-      if (firstMatch !== null) {
+      // 正解ワードがあった場合
+
+      if (
+        firstMatch !== null
+      ) {
+
 
         result.innerHTML = `
 
           <div class="result-text">
+
             ${firstMatch.message}
+
           </div>
+
 
           <img
             src="${firstMatch.image}"
@@ -290,16 +457,23 @@
 
         `;
 
+
       }
 
-      // 正解ワードが見つからなかった場合
+
+      // 正解ワードがなかった場合
+
       else {
+
 
         result.innerHTML = `
 
           <div class="result-text">
+
             他のワードを入力してください。
+
           </div>
+
 
           <img
             src="IMG_5892.jpeg"
@@ -308,11 +482,15 @@
 
         `;
 
+
       }
 
     }
 
+
   </script>
 
+
 </body>
+
 </html>
