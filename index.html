@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ひみつのワードゲーム♡</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN",
+                   "Yu Gothic", sans-serif;
+      background: linear-gradient(135deg, #ffe4f0, #e9ddff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 30px;
+      padding: 35px 25px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #ff6fa5;
+      font-size: 28px;
+    }
+
+    .description {
+      color: #777;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 2px solid #ffc1d9;
+      border-radius: 15px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #ff6fa5;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 15px;
+      background: #ff8fba;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    #result {
+      margin-top: 25px;
+    }
+
+    #result img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 20px;
+      margin-top: 15px;
+    }
+
+    .result-text {
+      font-size: 20px;
+      font-weight: bold;
+      color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>🎀 ひみつのワードゲーム 🎀</h1>
+
+    <p class="description">
+      ワードを入力してみてね♡
+    </p>
+
+    <input
+      type="text"
+      id="wordInput"
+      placeholder="ここに入力してね"
+    >
+
+    <button onclick="checkWord()">
+      調べる♡
+    </button>
+
+    <div id="result"></div>
+
+  </div>
+
+  <script>
+    function checkWord() {
+
+      const input = document.getElementById("wordInput").value;
+      const result = document.getElementById("result");
+
+      let firstWord = "";
+      let firstPosition = Infinity;
+
+      const words = [
+        {
+          word: "ちんこ",
+          image: "image-a.jpg",
+          message: "🎉 正解！"
+        },
+        {
+          word: "ちんちん",
+          image: "image-b.jpg",
+          message: "🎉 正解！"
+        },
+        {
+          word: "ちんぽ",
+          image: "image-c.jpg",
+          message: "🎉 正解！"
+        }
+      ];
+
+      for (const item of words) {
+
+        const position = input.indexOf(item.word);
+
+        if (position !== -1 && position < firstPosition) {
+          firstPosition = position;
+          firstWord = item;
+        }
+      }
+
+      if (firstWord !== "") {
+
+        result.innerHTML = `
+          <div class="result-text">
+            ${firstWord.message}
+          </div>
+          <img src="${firstWord.image}" alt="結果画像">
+        `;
+
+      } else {
+
+        result.innerHTML = `
+          <div class="result-text">
+            😭 ハズレ！
+          </div>
+          <img src="image-miss.jpg" alt="ハズレ画像">
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>
